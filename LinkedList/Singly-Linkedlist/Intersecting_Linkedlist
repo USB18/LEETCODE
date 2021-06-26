@@ -1,0 +1,26 @@
+/*
+Input: listA = [4,1,8,4,5], listB = [5,6,1,8,4,5]
+Output: Intersected at '8'
+*/
+
+	public static Node1 getIntersectionNode(Node1 headA, Node1 headB) {
+		if (headA == null) {
+			return headA;
+		}
+		if (headB == null) {
+			return headB;
+		}
+		Set<Node1> set = new HashSet<Node1>();
+
+		while (headA.next != null) {
+			set.add(headA);
+			headA = headA.next;
+		}
+		while (headB.next != null) {
+			if (set.contains(headB)) {
+				return headB;
+			}
+			headB = headB.next;
+		}
+		return null;
+	}
