@@ -2,40 +2,6 @@
 Input: head = [1,2,2,1]
 Output: true
 */
-
-class Node {
-	Node next;
-	int data;
-
-	Node(int data) {
-		this.data = data;
-		this.next = null;
-	}
-}
-
-public class Linkedlistloop {
-	Node head;
-
-	private void insert(int data) {
-		Node newNode = new Node(data);
-		if (head == null) {
-			head = newNode;
-		} else {
-			Node temp = head;
-			while (temp.next != null) {
-				temp = temp.next;
-			}
-			temp.next = newNode;
-		}
-	}
-
-	private void show(Node head) {
-		Node temp = head;
-		while (temp != null) {
-			System.out.print(temp.data + " ");
-			temp = temp.next;
-		}
-	}
   
 	private boolean isPalindrome(Node head) {
 		Node current = head;
@@ -55,15 +21,3 @@ public class Linkedlistloop {
 		}
 		return true;
 	}
-
-	public static void main(String[] args) {
-		Linkedlistloop list2 = new Linkedlistloop();
-		list2.insert(1);
-		list2.insert(2);
-		list2.insert(3);
-		list2.insert(4);
-		list2.insert(5);
-
-		System.out.println(list2.isPalindrome(list2.head));
-    }
-}
