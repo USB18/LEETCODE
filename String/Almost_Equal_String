@@ -1,0 +1,35 @@
+/*
+Input: s1 = "bank", s2 = "kanb"
+Output: true
+*/
+
+ public boolean areAlmostEqual(String s1, String s2) {
+        int count = 0, sum = 0;
+		int n = 0, i = 0;
+		if (s1.length() != s2.length()) {
+			return false;
+		}
+		while (n < s1.length()) {
+			if (s1.charAt(i) != s2.charAt(i)) {
+				count++;
+			}
+			n++;	i++;
+		}
+		if (count == 2 || count == 0) {
+			char[] ch1 = s1.toCharArray();
+			char[] ch2 = s2.toCharArray();
+
+			for (int j = 0; j < ch1.length; j++) {
+				for (int k = 0; k < ch2.length; k++) {
+					if (ch1[j] == ch2[k]) {
+						sum++;
+						break;
+					}
+				}
+			}
+			if (sum == s1.length()) {
+				return true;
+			}
+		}
+		return false;
+    }
