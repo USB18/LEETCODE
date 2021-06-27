@@ -1,0 +1,29 @@
+/*
+Input: l1 = [1,2,4], l2 = [1,3,4]
+Output: [1,1,2,3,4,4]
+*/
+
+public ListNode mergeTwoLists(ListNode headA, ListNode headB) {
+		ListNode dummy = new ListNode(0);
+		ListNode temp = dummy;
+
+		while (true) {
+			if (headA == null) {
+				temp.next = headB;
+				break;
+			}
+			if (headB == null) {
+				temp.next = headA;
+				break;
+			}
+			if (headA.val <= headB.val) {
+				temp.next = headA;
+				headA = headA.next;
+			} else {
+				temp.next = headB;
+				headB = headB.next;
+			}
+			temp = temp.next;
+		}
+		return dummy.next;
+	}
