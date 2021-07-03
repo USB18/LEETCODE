@@ -1,0 +1,30 @@
+/*
+Input: s = "deeedbbcccbdaa", k = 3
+Output: "aa"
+*/
+
+	public static String removeDuplicates(String s, int k) {
+		Stack<int[]> main = new Stack<>();
+		char[] ch = s.toCharArray();
+
+		for (char c : ch) {
+			if (!main.isEmpty() && main.peek()[0] == c) {
+				main.peek()[1]++;
+			} else {
+				main.push(new int[] { c, 1 });
+			}
+
+			if (main.peek()[1] == k) {
+				main.pop();
+			}
+		}
+
+		StringBuilder sb = new StringBuilder();
+		while (!main.isEmpty()) {
+			int[] p = main.pop();
+			while (p[1]-- > 0) {
+				sb.append((char) p[0]);
+			}
+		}
+		return sb.reverse().toString();
+	}
