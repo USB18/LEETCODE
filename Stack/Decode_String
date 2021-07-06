@@ -1,0 +1,41 @@
+/*
+
+*/
+
+	public static String decodeString(String s) {
+		Stack<Character> st = new Stack<Character>();
+		char[] ch = s.toCharArray();
+
+		for (char c : ch) {
+			if (c != ']') {
+				st.push(c);
+			} else {
+				StringBuilder sb = new StringBuilder();
+				while (!st.isEmpty() && Character.isLetter(st.peek())) {
+					sb.append(st.pop());
+				}
+				String str = sb.reverse().toString();
+				st.pop();
+
+				sb = new StringBuilder();
+				while (!st.isEmpty() && Character.isDigit(st.peek())) {
+					sb.append(st.pop());
+				}
+				String str2 = sb.toString();
+				int num = Integer.parseInt(str2);
+
+				while (num-- > 0) {
+					for (char ch1 : str.toCharArray()) {
+						st.push(ch1);
+					}
+				}
+			}
+		}
+
+		StringBuilder str = new StringBuilder();
+		while (!st.isEmpty()) {
+			str.append(st.pop());
+		}
+		return str.reverse().toString();
+	}
+}
