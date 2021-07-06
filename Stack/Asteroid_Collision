@@ -1,0 +1,35 @@
+/*
+Input: asteroids = [10,2,-5]
+Output: [10]
+Explanation: The 2 and -5 collide resulting in -5. The 10 and -5 collide resulting in 10.
+*/
+
+class Solution {
+    public int[] asteroidCollision(int[] asteroids) {
+		Stack<Integer> st = new Stack<Integer>();
+		int i = 0;
+		while (i < asteroids.length) {
+			int asteroid = asteroids[i];
+			if (!st.isEmpty()) {
+				if (st.peek() > 0 && asteroid < 0) {
+					if (st.peek() == (-asteroid)) {
+						st.pop();
+					} else if (st.peek() < (-asteroid)) {
+						st.pop();
+						continue;
+					}
+				} else {
+					st.push(asteroid);
+				}
+			} else {
+				st.push(asteroid);
+			}
+			i++;
+		}
+		int[] res = new int[st.size()];
+		i = st.size() - 1;
+		while (!st.isEmpty())
+			res[i--] = st.pop();
+		return res;
+    }
+}
